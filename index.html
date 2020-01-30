@@ -1,0 +1,13 @@
+<html>
+<body onload="start()">
+  <script src="./index.js"></script>
+  <div>
+    <p>
+      <input id="red_slider" type="range" min="0" max="255" step="1" oninput="sliderUpdate(this.value)"/>
+      Red = <span id="sliderText"></span>
+    </p>
+  </div>
+  
+  <canvas id="canvas" width="250" height="250"></canvas>
+</body>
+</html>
