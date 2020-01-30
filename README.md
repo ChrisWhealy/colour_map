@@ -2,16 +2,18 @@
 
 A small WebAssembly Text program that generates the RGBA data needed to display a simple colour square.
 
-The blue value varies along the vertical axis, and the green value varies along the horizontal access.  My moving the slider, you can adjust the value of eth red component from 0 to 255, and thus you can generate all possible RGB colours.
+The blue value varies along the vertical axis, and the green value varies along the horizontal access.
+
+By moving the slider, you can adjust the value of the red component from 0 to 255, and thus you can generate all possible RGB colours.
 
 ![Screenshot](./Screenshot.png)
 
 ## Motivation
 
-The purpose of writing the little app is to improve my ability to write directly in WebAssembly Text.  The specific features that I learned here were:
+The purpose of writing the little app was practise writing directly in WebAssembly Text.  The specific features that I learned in this exercise were:
 
 * Nested loops &mdash; each `(loop)` statement must be contained within its own `(block)`
-* Conversion of integer `i32` values into floating point `f32` values and back again.  This functionality is contained within function [$colour-component](./wasm_lib/colout_map.wat#L14)
+* Conversion of integer `i32` values into floating point `f32` values and back again.  This functionality is contained within function [$colour-component](https://github.com/ChrisWhealy/colour_map/blob/master/wasm_lib/colour_map.wat#L14)
 * Reading WASM linear memory directly from JavaScript
 
 ## Prequisites (Required)
@@ -29,7 +31,7 @@ The WebAssembly Text file [`colour_map.wat`](./wasm_lib/colour_map.wat) has alre
 
 Different tools are available for this, but two of the simplest are:
 
-1. The `wat2wasm` command line tool found in the [WebAssembly Binary Toolkit](https://github.com/WebAssembly/wabt)
+1. The `wat2wasm` command line tool found in the [WebAssembly Binary Toolkit](https://github.com/WebAssembly/wabt) (or `wabt`)
 
     `wabt` can either be installed by building it directly from the Git repository listed above, or if you already have the [WebAssembly Package Manager](https://wapm.io/package/wabt) installed, you can install it using the command `wapm install wabt`.
 
@@ -44,7 +46,7 @@ Different tools are available for this, but two of the simplest are:
     $ git clone https://github.com/ChrisWhealy/colour_map.git
     ```
 
-1. Compile WAT Source code (Optional)
+1. Compile WAT source code (Optional)
 
     Change into the `wasm_lib` directory and run the command to compile the WebAssembly Text file
 
