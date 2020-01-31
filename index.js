@@ -10,11 +10,21 @@ function $id(elementId) {
 const wasmFilePath = './wasm_lib/colour_map.wasm'  
 
 // *****************************************************************************
-// Event handler for updating slider text and regenerating a new colour square
-const sliderUpdate =
-  val => {
-    $id("redValue").innerHTML = val
-    drawColourSquare(val)
+// Event handler for updating red slider text and regenerating a new colour
+// square
+const redSliderInput =
+  red => {
+    $id("redValue").innerHTML = red
+    drawColourSquare(red, $id("alphaSlider").value)
+  }
+
+// *****************************************************************************
+// Event handler for updating alpha slider text and regenerating a new colour
+// square
+const alphaSliderInput =
+  alpha => {
+    $id("alphaValue").innerHTML = alpha
+    drawColourSquare($id("redSlider").value, alpha)
   }
 
 // *****************************************************************************
@@ -29,7 +39,7 @@ const canvasMouseMoveHandler =
 // *****************************************************************************
 // Invoke WASM functionality to create the data for a colour square
 const drawColourSquare =
-  val => {
+  (red, alpha) => {
     // Generate colour square data
     // At the moment, the only way for a WASM function to return more than a
     // single number, is to write that data into WASM's linear memory, then have
@@ -38,7 +48,7 @@ const drawColourSquare =
     // any data to JavaScript in the expected manner.
     // Instead, when this function terminates, JavaScript has access to WASM's
     // linear memory, and we can read the data directly from there
-    instance.exports.getColourSquare(cvs.width, val)
+    instance.exports.getColourSquare(cvs.width, red, alpha)
     
     // Put the entire block of WASM linear memory into a Uint8Array; however,
     // this is more data than is needed for our image, so we must select only
@@ -97,5 +107,11 @@ const start =
     cvs.onmousemove = canvasMouseMoveHandler
 
     // Draw the initial colour square
-    sliderUpdate($id("red_slider").value)
+    let redVal   = $id("redSlider").value
+    let alphaVal = $id("alphaSlider").value
+
+    $id("redValue").innerHTML   = redVal
+    $id("alphaValue").innerHTML = alphaVal
+
+    drawColourSquare(redVal, alphaVal)
   }

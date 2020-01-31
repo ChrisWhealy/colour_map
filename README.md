@@ -4,7 +4,11 @@ A small WebAssembly Text program that generates the RGBA data needed to display 
 
 The blue value varies down the vertical axis, and the green value varies along the horizontal access.
 
-By moving the slider, you can adjust the value of the red component from 0 to 255, and thus you can generate all possible RGB colours.
+## Features
+
+The value of the red component is adjusted by moving the red slider.
+
+The overall transparency of the entire colour square can be adjusted by moving the alpha slider.
 
 As you move the mouse pointer over the colour square, the green and blue values are displayed.
 
@@ -12,7 +16,7 @@ As you move the mouse pointer over the colour square, the green and blue values 
 
 ## Motivation
 
-The purpose of writing the little app was to practise writing directly in WebAssembly Text.  The specific features that I learned in this exercise were:
+This little app was written as an exercise in writing directly in WebAssembly Text.  The specific features that I learned here were:
 
 * Nested loops &mdash; each `(loop)` statement must be contained within its own `(block)`
 * Conversion of integer `i32` values into floating point `f32` values and back again.  This functionality is contained within function [$colour-component](https://github.com/ChrisWhealy/colour_map/blob/master/wasm_lib/colour_map.wat#L14)

@@ -43,37 +43,32 @@
   ;; This assumes we're running on a little-endian processor, so the colour component byte order is RGBA
   ;; - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   (func $gen-colour-square
-    (param $size i32)         ;; Colour square width/height
-    (param $red  i32)         ;; Fixed value for red component
+    (param $size  i32)        ;; Colour square width/height
+    (param $red   i32)        ;; Red component value supplied by caller
+    (param $alpha i32)        ;; Alpha channel component value supplied by caller
 
     (local $x       i32)      ;; Horizontal axis counter
     (local $y       i32)      ;; Vertical axis counter
-    (local $alpha   i32)      ;; Alpha channel value
     (local $blue    i32)      ;; Blue colour component of current pixel
     (local $green   i32)      ;; Blue colour component of current pixel
     (local $mem-loc i32)      ;; Current RGBA offset in color square
     
-    ;; Hardcode alpha value to 255
-    (set_local $alpha (i32.const 255))
-    (set_local $mem-loc (i32.const 0))
-
     ;; Write the length of colour square data in bytes as an i32 to offset 0
     ;; This will always be 4 * $size * $size when interpreted as a JavaScript Uint8Array
-    (i32.store (get_local $mem-loc)
+    (i32.store (i32.const 0)
                (i32.mul (i32.const 4)
                         (i32.mul (get_local $size)
                                  (get_local $size))))
 
-    ;; Set memory offset to 4 since the colour square data follows on from the preceding length value
+    ;; Set memory offset to 4 since the colour square data follows on from the preceding i32 length value
     (set_local $mem-loc (i32.const 4))
 
     (block
-      (set_local $blue  (i32.const 0))
-      (set_local $green (i32.const 0))
-      (set_local $x     (i32.const 0))
-      (set_local $y     (i32.const 0))
+      ;; Initialise loop counters
+      (set_local $x (i32.const 0))
+      (set_local $y (i32.const 0))
 
-      ;; Blue varies from 0 to 255 along the y axis
+      ;; Blue varies from 0 to 255 down the y axis
       (loop
         ;; Terminate the outer loop when we reach the edge of the square
         (br_if 1 (i32.eq (get_local $y) (get_local $size)))
@@ -124,6 +119,7 @@
 
   ;; - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   ;; Declare the use of 4 64Kb memory pages and export it using the name "memory"
+  ;; This is just enough memory in which to store the RGBA data for a 255*255 colour square
   ;; - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   (memory (export "memory") 4)
 
