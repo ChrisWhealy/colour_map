@@ -13,8 +13,17 @@ const wasmFilePath = './wasm_lib/colour_map.wasm'
 // Event handler for updating slider text and regenerating a new colour square
 const sliderUpdate =
   val => {
-    $id("sliderText").innerHTML = val
+    $id("redValue").innerHTML = val
     drawColourSquare(val)
+  }
+
+// *****************************************************************************
+// Event handler for canvas mousemove event
+// *****************************************************************************
+const canvasMouseMoveHandler =
+  e => {
+    $id("blueValue").innerHTML  = e.offsetY
+    $id("greenValue").innerHTML = e.offsetX
   }
 
 // *****************************************************************************
@@ -83,6 +92,9 @@ const start =
     cvs = $id("canvas")
     ctx = cvs.getContext('2d')
     img = ctx.createImageData(cvs.clientWidth, cvs.height)
+
+    // Add mouse move handler to canvas
+    cvs.onmousemove = canvasMouseMoveHandler
 
     // Draw the initial colour square
     sliderUpdate($id("red_slider").value)

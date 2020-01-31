@@ -1,13 +1,21 @@
 <html>
 <body onload="start()">
   <script src="./index.js"></script>
-  <div>
-    <p>
-      <input id="red_slider" type="range" min="0" max="255" step="1" oninput="sliderUpdate(this.value)"/>
-      Red = <span id="sliderText"></span>
-    </p>
-  </div>
+  <table border="0" cellpadding="3" cellspacing="0">
+    <tr><td>Red</td>
+        <td style="text-align: right;" id="redValue"></td>
+        <td><input id="red_slider" type="range" min="0" max="255" step="1" oninput="sliderUpdate(this.value)"/></td>
+    </tr>
+    <tr><td>Green</td>
+        <td style="text-align: right;" id="greenValue">0</td>
+        <td></td>
+    </tr>
+    <tr><td>Blue</td>
+        <td style="text-align: right;" id="blueValue">0</td>
+        <td></td>
+    </tr>
+  </table>
   
-  <canvas id="canvas" width="250" height="250"></canvas>
+  <canvas id="canvas" width="255" height="255"></canvas>
 </body>
 </html>
