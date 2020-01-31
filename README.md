@@ -10,7 +10,7 @@ By moving the slider, you can adjust the value of the red component from 0 to 25
 
 ## Motivation
 
-The purpose of writing the little app was practise writing directly in WebAssembly Text.  The specific features that I learned in this exercise were:
+The purpose of writing the little app was to practise writing directly in WebAssembly Text.  The specific features that I learned in this exercise were:
 
 * Nested loops &mdash; each `(loop)` statement must be contained within its own `(block)`
 * Conversion of integer `i32` values into floating point `f32` values and back again.  This functionality is contained within function [$colour-component](https://github.com/ChrisWhealy/colour_map/blob/master/wasm_lib/colour_map.wat#L14)
@@ -29,7 +29,7 @@ $ python3 -m http.server
 
 The WebAssembly Text file [`colour_map.wat`](./wasm_lib/colour_map.wat) has already been compiled into a WASM module.  However, should you wish to perform this step yourself, you must install the correct software to perform WAT -> WASM compilation.
 
-Different tools are available for this, but two of the simplest are:
+Different tools are available for this, but two of the simplest options are either:
 
 1. The `wat2wasm` command line tool found in the [WebAssembly Binary Toolkit](https://github.com/WebAssembly/wabt) (or `wabt`)
 
