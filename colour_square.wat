@@ -14,17 +14,14 @@
         (param $val i32)
         (param $max i32)
         (result i32)
-    ;; Convert rounded f32 back to an i32
+    ;; Truncate f32 back to unsigned i32
     (i32.trunc_f32_u
-      ;; Round the f32 ratio of ($val / $max) * 255 to the nearest integer
-      (f32.nearest
-        ;; Multiply by 255
-        (f32.mul
-          ;; Calculate $val / $max
-          (f32.div (f32.convert_i32_u (local.get $val))
-                   (f32.convert_i32_u (local.get $max)))
-          (f32.const 255)
-        )
+      ;; Multiply by 255
+      (f32.mul
+        ;; Calculate $val / $max
+        (f32.div (f32.convert_i32_u (local.get $val))
+                 (f32.convert_i32_u (local.get $max)))
+        (f32.const 255)
       )
     )
   )
