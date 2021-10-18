@@ -32,18 +32,16 @@ Therefore you need a tool such as `wat2wasm` available from the [WebAssembly Bin
 
 1. Compile WAT source code (Optional)
 
-    Compile the WebAssembly Text file
-
     ```bash
     wat2wasm colour_square.wat
     ```
 
-    This will create the file `colour_square.wasm`
+    This creates the file `colour_square.wasm`
 
-1. Change back to the main repo folder and start your Web Server using the local directory as the document root
+1. Start a Web Server using the local directory as the document root
 
     ```bash
-    $ python3 -m http.server
+    python3 -m http.server
     Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
     ```
 
