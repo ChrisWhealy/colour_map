@@ -23,8 +23,8 @@ const alphaSliderInput =
 // Event handler for canvas mousemove event
 const canvasMouseMoveHandler =
   e => {
-    $id("blueValue").innerHTML  = e.offsetY
-    $id("greenValue").innerHTML = e.offsetX
+    $id("blueValue").innerHTML  = e.offsetX
+    $id("greenValue").innerHTML = e.offsetY
   }
 
 // Convert 4 bytes from Uint8Array `m` index `i` as a little-endian i32

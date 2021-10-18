@@ -3,7 +3,7 @@
 ;; memory in the order ABGR (Alpha, Blue, Green, Red)
 ;; ---------------------------------------------------------------------------------------------------------------------
 (module
-  (memory (export "memory") 4)
+  (memory (export "memory") 16)
 
   (func $incr (param $val i32) (result i32) (i32.add (local.get $val) (i32.const 1)))
 

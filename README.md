@@ -1,6 +1,6 @@
 # WebAssembly `colour_square` Generator
 
-A small WebAssembly Text program that generates the RGBA data needed to display a simple colour square 255 pixels wide.
+A small WebAssembly Text program that generates the RGBA data needed to display a simple colour square 511 pixels wide.
 
 The green value varies down the vertical axis, and the blue value varies along the horizontal access.
 The red and alpha values are supplied from the sliders on the UI.
