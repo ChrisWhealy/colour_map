@@ -1,7 +1,14 @@
+<!DOCTYPE html>
 <html>
+<head>
+  <meta charset="UTF-8">
+</head>
 <body onload="start()">
   <script src="./index.js"></script>
   <table border="0" cellpadding="3" cellspacing="0">
+    <tr><td>WASM runtime</td>
+        <td id="wasmExecTime" colspan="2"></td>
+    </tr>
     <tr><td>Red</td>
         <td style="text-align: right;" id="redValue"></td>
         <td><input id="redSlider" type="range" min="0" max="255" step="1" value="128" oninput="redSliderInput(this.value)"/></td>
@@ -17,9 +24,9 @@
     <tr><td>Alpha</td>
       <td style="text-align: right;" id="alphaValue"></td>
       <td><input id="alphaSlider" type="range" min="0" max="255" step="1" value="255" oninput="alphaSliderInput(this.value)"/></td>
-  </tr>
-</table>
-  
+    </tr>
+  </table>
+
   <canvas id="canvas" width="255" height="255"></canvas>
 </body>
 </html>
